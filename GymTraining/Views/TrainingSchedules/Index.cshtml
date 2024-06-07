@@ -1,0 +1,59 @@
+﻿@model IEnumerable<GymTraining.Models.Training>
+
+@{
+    ViewData["Title"] = "Тренування";
+}
+
+<h1>Тренування</h1>
+
+<p>
+    <a asp-action="Create">Створити</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SportsmanData)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Exercise)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.Meal)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.IsCompleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SportsmanData.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainingStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Exercise.Name)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.Meal)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCompleted)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Змінити</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробиці</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Вилучити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

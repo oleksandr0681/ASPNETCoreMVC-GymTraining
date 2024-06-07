@@ -1,0 +1,88 @@
+﻿@model IEnumerable<GymTraining.Models.Training>
+
+@{
+    ViewData["Title"] = "Тренування спортсмена";
+}
+
+@* <h1>SportsmanTraining</h1> *@
+<h1>Тренування спортсмена</h1>
+@if (ViewBag.sportsmanData != null && ViewBag.sportsmanData is SportsmanData)
+{
+    <h3>@ViewBag.sportsmanData.Name</h3>
+}
+
+@* <p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SportsmanData)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Exercise)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCompleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SportsmanData.ApplicationUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainingStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Exercise.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Meal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCompleted)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@
+@{
+    int completed = 0;
+    @foreach (Training training in Model)
+    {
+        <div class="custom-block shadow-lg">
+            <p>@training.TrainingStartTime.ToString()</p>
+            @if (training.Exercise != null)
+            {
+                <p><span>Фізична вправа: </span><span>@training.Exercise.Name</span></p>
+            }
+            <p><span>Харчування: </span><span>@training.Meal</span></p>
+            <p>
+                <span>Виконано: </span><input type="checkbox" checked="@training.IsCompleted" disabled
+                                              class="form-check-input" />
+            </p>
+        </div>
+        if (training.IsCompleted == true)
+        {
+            completed++;
+        }
+    }
+    <div id="statement">Виконано вправ: @completed.</div>
+}
+<a asp-action="Index">Повернутись</a>

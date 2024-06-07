@@ -1,0 +1,109 @@
+﻿@model IEnumerable<GymTraining.Models.SportsmanData>
+
+@{
+    ViewData["Title"] = "Інформація про спортсмена";
+}
+
+<h1>Інформація про спортсмена</h1>
+
+<p>
+    <a asp-action="Create">Створити</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainerData)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainerData.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Змінити</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробиці</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Вилучити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<h3>Тренування</h3>
+@if (ViewBag.trainingSchedules != null && ViewBag.trainingSchedules is List<Training>)
+{
+    List<Training> trainingSchedules = ViewBag.trainingSchedules;
+    int completed = 0;
+    foreach (Training training in trainingSchedules)
+    {
+        <div class="sportsmanCard custom-block shadow-lg">
+            <p>@training.TrainingStartTime.ToString()</p>
+            @if (training.Exercise != null)
+            {
+                <p><span>Фізична вправа: </span><span>@training.Exercise.Name</span></p>
+            }
+            <p><span>Харчування: </span><span>@training.Meal</span></p>
+            <p>
+                <span>Виконано: </span><input type="checkbox" checked="@training.IsCompleted"
+                                            class="form-check-input trainingCheck"
+                                            data-training-id="@training.Id" />
+            </p>
+        </div>
+        if (training.IsCompleted == true)
+        {
+            completed++;
+        }
+    }
+    <div id="statement">Виконано вправ: @completed.</div>
+}
+
+<script>
+    // Коли документ (сторінка) завантажився.
+    document.addEventListener("DOMContentLoaded", documentReady);
+
+    function documentReady() {
+        const trainingCheckboxes = document.querySelectorAll('.trainingCheck');
+        const statement = document.querySelector('#statement');
+        // console.log(trainingCheckboxes);
+        for (let i = 0; i < trainingCheckboxes.length; i++) {
+            const currentCheckbox = trainingCheckboxes[i];
+            currentCheckbox.addEventListener("click", function (event) {
+                // console.log(currentCheckbox.checked);
+                $.ajax({
+                    type: "POST", 
+                    url: "@Url.Action("TrainingCheckAjax", "TrainingSchedules")", 
+                    data: {
+                        id: currentCheckbox.dataset.trainingId,
+                        trainingChecked: currentCheckbox.checked 
+                    },
+                    dataType: "json", 
+                    success: function (message) {
+                        console.log(message);
+                        statement.innerText = '';
+                        statement.innerHTML += '<p>Виконано вправ: ' + message.done + '.</p>';
+                    },
+                    error: function (req, status, error) {
+                        console.log(error);
+                    }
+                });
+            });
+        }
+    }
+</script>

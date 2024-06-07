@@ -1,0 +1,51 @@
+﻿@model GymTraining.Models.Training
+
+@{
+    ViewData["Title"] = "Вилучити";
+}
+
+<h1>Вилучити</h1>
+
+<h3>Ви впевнені, що хочете вилучити це?</h3>
+<div>
+    <h4>Тренування</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SportsmanData)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SportsmanData.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrainingStartTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrainingStartTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Exercise)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Exercise.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Meal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Meal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsCompleted)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsCompleted)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Вилучити" class="btn btn-danger" /> |
+        <a asp-action="Index">Повернутись до списку</a>
+    </form>
+</div>

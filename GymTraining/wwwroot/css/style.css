@@ -1,0 +1,263 @@
+﻿/*
+
+TemplateMo 590 topic listing
+
+https://templatemo.com/tm-590-topic-listing
+
+*/
+
+:root {
+    --mainLightBackgroundColor: #aaffcc;
+    --mainDarkBackgroundColor: #66bb88;
+    --additionalBackgroundColor: #eeeeee;
+    --white-color: #ffffff;
+    --primary-color: #115577;
+    --secondary-color: #88ddcc;
+    --section-bg-color: #f0f8ff;
+    --custom-btn-bg-color: #88ddcc;
+    --custom-btn-bg-hover-color: #115577;
+    --dark-color: #000000;
+    --p-color: #333333;
+    --border-color: #7fffd4;
+    --link-hover-color: #13547a;
+    --body-font-family: 'Open Sans', sans-serif;
+    --title-font-family: 'Montserrat', sans-serif;
+    --h1-font-size: 58px;
+    --h2-font-size: 46px;
+    --h3-font-size: 32px;
+    --h4-font-size: 28px;
+    --h5-font-size: 24px;
+    --h6-font-size: 22px;
+    --p-font-size: 20px;
+    --menu-font-size: 14px;
+    --btn-font-size: 18px;
+    --copyright-font-size: 16px;
+    --border-radius-large: 100px;
+    --border-radius-medium: 20px;
+    --border-radius-small: 10px;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+}
+
+body {
+    font-family: var(--body-font-family);
+    background-color: var(--additionalBackgroundColor);
+}
+
+div, p, ul, ol {
+    color: var(--p-color);
+}
+
+/*---------------------------------------
+  SITE HEADER              
+-----------------------------------------*/
+.navbar {
+    background-color: var(--secondary-color);
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+    border-bottom: 1px solid rgba(128, 208, 199, 0.35);
+}
+
+.navbar-brand,
+.navbar-brand:hover {
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-color);
+    display: block;
+}
+
+    .navbar-brand span {
+        font-family: var(--title-font-family);
+    }
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    border-radius: var(--border-radius-large);
+    margin: 10px;
+    padding: 10px;
+}
+
+.navbar-nav .nav-link, .navbar-link {
+    display: inline-block;
+    color: var(--white-color);
+    font-family: var(--title-font-family);
+    font-size: var(--menu-font-size);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover {
+        color: var(--primary-color);
+    }
+
+/*---------------------------------------
+  PAGINATION              
+-----------------------------------------*/
+.pagination {
+    margin-top: 40px;
+}
+
+.page-link {
+    border: 0;
+    border-radius: var(--border-radius-small);
+    color: var(--p-color);
+    font-family: var(--title-font-family);
+    margin: 0 5px;
+    padding: 10px 20px;
+}
+
+    .page-link:hover,
+    .page-item:first-child .page-link:hover,
+    .page-item:last-child .page-link:hover {
+        background-color: var(--secondary-color);
+        color: var(--white-color);
+    }
+
+    .active > .page-link, .page-link.active {
+        background-color: var(--secondary-color);
+        color: var(--white-color);
+        border-color: var(--secondary-color);
+    }
+
+/*---------------------------------------
+  CUSTOM FORM               
+-----------------------------------------*/
+.custom-form .form-control {
+    border-radius: var(--border-radius-small);
+    color: var(--p-color);
+    margin-bottom: 24px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 20px;
+    outline: none;
+}
+
+.form-floating > label {
+    padding-left: 20px;
+}
+
+.custom-form [type="submit"] {
+    background: var(--custom-btn-bg-color);
+    border: none;
+    border-radius: var(--border-radius-large);
+    color: var(--white-color);
+    font-family: var(--title-font-family);
+    font-size: var(--p-font-size);
+    font-weight: var(--font-weight-semibold);
+    transition: all 0.3s;
+    margin-bottom: 0;
+}
+
+    .custom-form [type="submit"]:hover,
+    .custom-form [type="submit"]:focus {
+        background: var(--custom-btn-bg-hover-color);
+        border-color: transparent;
+    }
+
+.customFormControl {
+    border-radius: var(--border-radius-large);
+    color: var(--p-color);
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 20px;
+    outline: none;
+}
+
+.customSubmit {
+    background: var(--custom-btn-bg-color);
+    border: none;
+    border-radius: var(--border-radius-large);
+    color: var(--white-color);
+    font-family: var(--title-font-family);
+    font-size: var(--p-font-size);
+    font-weight: var(--font-weight-semibold);
+    transition: all 0.3s;
+}
+
+    .customSubmit:hover,
+    .customSubmit:focus {
+        background: var(--custom-btn-bg-hover-color);
+        color: var(--white-color);
+        border-color: transparent;
+    }
+
+/*---------------------------------------
+  TOPICS              
+-----------------------------------------*/
+
+.custom-block {
+    border-radius: var(--border-radius-medium);
+    position: relative;
+    overflow: auto;
+    padding: 30px;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+    .custom-block:hover {
+        transform: translateY(-3px);
+    }
+
+/*---------------------------------------
+  SITE FOOTER              
+-----------------------------------------*/
+.site-footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 10px solid var(--secondary-color);
+    background-color: var(--secondary-color);
+}
+
+.site-footer-title {
+    color: var(--primary-color);
+}
+
+/*----------------------------------------*/
+main {
+    background-color: var(--white-color);
+    padding: 20px;
+    margin: 0;
+    overflow: auto;
+    min-height: 90vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+a:hover {
+    /*text-shadow: 1px 3px 4px rgba(50, 50, 50, .25);*/
+}
+
+p, ol {
+    text-align: justify;
+}
+
+.sportsmanCard {
+    margin: 20px 0;
+    overflow: auto;
+}
+
+#statement {
+    padding: 20px 0;
+    font-weight: bold;
+}
+
+.image {
+    margin: 20px auto;
+    width: 80%;
+}
+
+    .image img {
+        width: 100%;
+    }
+
+footer .container div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

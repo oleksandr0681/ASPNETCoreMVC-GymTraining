@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GymTraining.Models.TrainerData>
+
+@{
+    ViewData["Title"] = "Інформація про тренера";
+}
+
+<h1>Інформація про тренера</h1>
+
+<p>
+    <a asp-action="Create">Створити</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Змінити</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробиці</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Вилучити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<h3>Спортсмени</h3>
+@if (ViewBag.sportsmenData != null && ViewBag.sportsmenData is List<SportsmanData>)
+{
+    List<SportsmanData> sportsmen = ViewBag.sportsmenData;
+    foreach (SportsmanData sportsman in sportsmen)
+    {
+        <div class="sportsmanCard custom-block shadow-lg">
+            <p>
+                <a asp-action="SportsmanTraining" asp-route-id="@sportsman.Id">@sportsman.Name</a>
+            </p>
+        </div>
+    }
+}

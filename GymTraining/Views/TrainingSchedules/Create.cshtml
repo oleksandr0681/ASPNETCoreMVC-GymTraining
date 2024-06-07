@@ -1,0 +1,51 @@
+﻿@model GymTraining.Models.Training
+
+@{
+    ViewData["Title"] = "Створити";
+}
+
+<h1>Створити</h1>
+
+<h4>Тренування</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" class="custom-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SportsmanDataId" class="control-label"></label>
+                <select asp-for="SportsmanDataId" class ="form-control" asp-items="ViewBag.SportsmanDataId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrainingStartTime" class="control-label"></label>
+                <input asp-for="TrainingStartTime" class="form-control" />
+                <span asp-validation-for="TrainingStartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseId" class="control-label"></label>
+                <select asp-for="ExerciseId" class ="form-control" asp-items="ViewBag.ExerciseId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Meal" class="control-label"></label>
+                <textarea asp-for="Meal" class="form-control" ></textarea>
+                <span asp-validation-for="Meal" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Створити" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Повернутись до списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

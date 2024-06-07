@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using GymTraining.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ApplicationUser? user = await UserManager.GetUserAsync(User);
+    IList<string> userRoles = new List<string>();
+    if (user != null)
+    {
+        userRoles = await UserManager.GetRolesAsync(user);
+    }
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a class="nav-link" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            </li>
+            @if (userRoles.Contains("Trainer"))
+            {
+                <li>
+                    <a class="nav-link" asp-area="" asp-controller="TrainersData" asp-action="Index">Тренер</a>
+                </li>
+                <li>
+                    <a class="nav-link" asp-area="" asp-controller="Exercises" asp-action="Index">Вправи</a>
+                </li>
+                <li>
+                    <a class="nav-link" asp-area="" asp-controller="TrainingSchedules" asp-action="Index">Тренування</a>
+                </li>
+            }
+            @if (userRoles.Contains("Sportsman"))
+            {
+                <li>
+                    <a class="nav-link" asp-area="" asp-controller="SportsmenData" asp-action="Index">Спортсмен</a>
+                </li>
+                <li>
+                    <a class="nav-link" asp-area="" asp-controller="Exercises" asp-action="Index">Вправи</a>
+                </li>
+            }
+            <li>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">Вийти</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-controller="Account" asp-action="Register" class="nav-link">Реєстрація</a></li>
+        <li><a asp-controller="Account" asp-action="Login" class="nav-link">Увійти</a></li>
+    </ul>
+}
