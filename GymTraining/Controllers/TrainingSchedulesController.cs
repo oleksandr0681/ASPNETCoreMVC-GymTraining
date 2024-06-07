@@ -304,7 +304,7 @@ namespace GymTraining.Controllers
         // POST: TrainingSchedules/TrainingCheckAjax/5/true/
         [HttpPost]
         [Route("/TrainingSchedules/TrainingCheckAjax/{id:int?}/{trainingChecked:bool?}")]
-        [Authorize(Roles = "Sportsman, Administrator")]
+        [Authorize(Roles = "Sportsman")]
         public async Task<ExercisesDone> TrainingCheckAjax(int? id, bool? trainingChecked)
         {
             ExercisesDone exercisesDone = new ExercisesDone();
